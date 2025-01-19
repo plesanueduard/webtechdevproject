@@ -1,18 +1,25 @@
-import express from 'express';
 import cors from 'cors';
 import { createPool } from 'mysql2/promise';
+import express from "express"
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://continuousfeedback.netlify.app',
+}));
 app.use(express.json());
 
 const pool = createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'feedbackdb1',
-    database: 'feedbackdb',
-    port: 3306, 
-    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DBNAME,
+    port: 3306,
+});
+app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+    console.log("Server running on port", process.env.PORT || 3001);
 });
 
 app.post('/login', async (req, res) => {
@@ -29,10 +36,12 @@ app.post('/login', async (req, res) => {
             return res.status(200).json({ 
                 success: true, 
                 message: 'Login successful!', 
-                role: user.role 
+                role: user.role,
             });
         } else {
-            return res.status(401).json({ success: false, message: 'Invalid email or password' });
+            return res.status(401).json({ success: false,
+                message: 'Invalid email or password',
+                });
         }
     } catch (err) {
         console.error(err);
@@ -123,10 +132,4 @@ app.get('/getAllFeedback', async (req, res) => {
             message: 'Server error while fetching feedback!',
         });
     }
-});
-
-
-
-app.listen(3001, () => {
-    console.log("Server running on http://localhost:3001");
 });

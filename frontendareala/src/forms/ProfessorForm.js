@@ -15,7 +15,7 @@ function ProfessorForm() {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/saveActivity', {
+            const response = await fetch('https://webtechdevproject.onrender.com/saveActivity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

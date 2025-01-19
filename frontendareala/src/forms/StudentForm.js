@@ -14,7 +14,7 @@ function StudentForm() {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/getActivity', {
+            const response = await fetch('https://webtechdevproject.onrender.com/getActivity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function StudentForm() {
         playSound(soundFile);
 
         try {
-            const response = await fetch('http://localhost:3001/sendFeedback', {
+            const response = await fetch('https://webtechdevproject.onrender.com/sendFeedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

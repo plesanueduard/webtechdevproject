@@ -6,7 +6,7 @@ function FeedbackActivity({ activityInfo }) {
 
     const sendFeedback = async (emotion) => {
         try {
-            const response = await fetch('http://localhost:3001/sendFeedback', {
+            const response = await fetch('https://webtechdevproject.onrender.com/sendFeedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ function Login({ setRole }) {
         }
     
         try {
-            const response = await fetch('http://localhost:3001/login', {
+            const response = await fetch('https://webtechdevproject.onrender.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function Login({ setRole }) {
                 setMsg(data.message);
             }
         } catch (error) {
-            setMsg('Server error');
+            setMsg('Login error');
         }
     };
 

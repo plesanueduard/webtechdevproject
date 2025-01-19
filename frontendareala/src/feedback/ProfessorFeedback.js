@@ -8,7 +8,7 @@ function ProfessorFeedback() {
     useEffect(() => {
         const fetchFeedback = async () => {
             try {
-                const response = await fetch('http://localhost:3001/getAllFeedback');
+                const response = await fetch('https://webtechdevproject.onrender.com/getAllFeedback');
                 const data = await response.json();
 
                 if (response.ok) {
